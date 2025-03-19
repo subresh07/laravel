@@ -8,3 +8,5 @@ Route::get('/', function () {
 });
 
 Route::resource('tasks', TaskController::class);
+
+Route::view('/users', 'users');
