@@ -13,7 +13,7 @@ class AppController extends Controller
         $search = $request->query('search');
         $parties = Party::when($search, function ($query, $search) {
             return $query->searchByName($search);
-        })->get();
+        })->paginate(5);
 
         return view('dashboard', compact('parties', 'search'));
     }
