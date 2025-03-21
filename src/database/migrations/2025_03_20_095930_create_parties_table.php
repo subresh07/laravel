@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('parties', function (Blueprint $table) {
             $table->id();
-            $table->string("full_name",100)->nullable();
-            $table->string("Phone_no",15)->nullable();
-            $table->string("address")->nullable();
-            $table->timestamps()    ;
+            $table->string("full_name", 100);
+            $table->string("Phone_no", 15)->nullable();
+            $table->string("address")->nullable();  // Fixed: stridng -> string
+            $table->string("city");                 // Fixed: stridng -> string
+
+            $table->timestamps();
         });
     }
 
