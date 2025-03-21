@@ -13,7 +13,7 @@ class AppController extends Controller
         $search = $request->query('search');
         $parties = Party::when($search, function ($query, $search) {
             return $query->searchByName($search);
-        })->paginate(5);
+        })->get();
 
         return view('dashboard', compact('parties', 'search'));
     }
@@ -27,17 +27,19 @@ class AppController extends Controller
 // Store a new party in the database
     public function store(Request $request)
     {
-    $validated = $request->validate([
-        'full_name' => 'required|string|max:100',
-        'Phone_no' => 'nullable|string|max:15',
-        'address' => 'nullable|string|max:255',
-        'city' => 'nullable|string|max:255',
-    ]);
-
-    Party::create($validated);
-
-    return redirect()->route('dashboard')->with('success', 'Party created successfully!');
+        $validated = $request->validate([
+           'full_name' => 'required|string|max:100',
+           'Phone_no' => 'nullable|string|max:15',
+           'address' => 'nullable|string|max:255',
+           'city' => 'nullable|string|max:255',
+       ]);
+   
+       Party::create($validated);
+   
+       return redirect()->route('dashboard')->with('success', 'Party created successfully!');
     }
+
+
 
     // Show a specific party's details
     public function show(Party $party)

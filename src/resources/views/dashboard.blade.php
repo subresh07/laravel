@@ -105,7 +105,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{$parties->links()}}
+                {{-- {{$parties->links()}} --}}
             </div>
         </div>
     </div>
