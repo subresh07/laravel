@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Party extends Model
 {
-    // Enable soft deletes (optional, if you want to allow "soft" deletion)
+    
     use SoftDeletes;
 
         protected $table = 'parties';
@@ -29,21 +29,16 @@ class Party extends Model
    
     public $timestamps = true;
 
-   
-    public function scopeByCity($query, $city)
+
+
+    public function scopeSearch($query, $search)
     {
-        return $query->where('city', $city);
+        return $query->where(function ($query) use ($search) {
+            $query->where('full_name', 'ILIKE', '%' . $search . '%')
+                  ->orWhere('city', 'ILIKE', '%' . $search . '%');
+        });
     }
 
-    /**
-     * Scope to search parties by full name.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string  $searchTerm
-     * @return \Illuminate\Database\Eloquent\Builder
-     */
-    public function scopeSearchByName($query, $searchTerm)
-    {
-        return $query->where('full_name', 'like', '%' . $searchTerm . '%');
-    }
+   
+
 }

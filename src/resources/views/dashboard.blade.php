@@ -42,6 +42,7 @@
                         @php
                             $recentParty = \App\Models\Party::latest()->first();
                         @endphp
+                        <p> View Details</p>
                         <p class="card-text">
                             @if ($recentParty)
                                 <a href="{{ route('parties.show', $recentParty) }}" class="text-white">{{ $recentParty->full_name }}</a>
@@ -49,7 +50,7 @@
                                 No parties yet
                             @endif
                         </p>
-                        <a href="#" class="text-white">View Details</a>
+                       
                     </div>
                 </div>
             </div>
