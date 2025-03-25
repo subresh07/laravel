@@ -14,7 +14,7 @@
             padding-top: 20px;
         }
         .sidebar a {
-            color: #fff;
+            color: #f5f0f0;
             padding: 10px 15px;
             display: block;
             text-decoration: none;
